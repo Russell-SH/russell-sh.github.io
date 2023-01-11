@@ -43,21 +43,37 @@
 					<section id="wrapper">
 						<header>
 							<div class="inner">
-								<h2>Spaceship Titanic</h2>
-								<p>This is an ongoing Kaggle Competition where my entry was once placed in the 70th percentile.</p>
-									<p>	A fictional passenger spaceship colided with a spacetime anomaly.
-										Half the passengers were transported by the anomaly. We are tasked with predicting which passengers were
-										transported using the records recovered from the spaceships's computer system.
-									</p>
+								<h2>World GDP Growth and Location</h2>
+								<p>
+									Is a country's income growth affected by its location and neighbors?
+									Lets use geodata to find out!	
+								</p>
 							</div>
 						</header>
 
 						<!-- Content -->
 							<div class="wrapper">
+								<div class = "inner">
+									<h3 class = "major">
+										Map
+									</h3>
+									<image src="images\world_gdp_growth_map.png" style = "width:100%; background-color: antiquewhite;" ></image>
+								</div>
 								<div class="inner">
-									<h3 class="major">Notebook</h3>
-									<iframe src="https://www.kaggle.com/embed/russellhizon/spaceship-titanic-competition?kernelSessionId=115970116" height="800" style="margin: 0 auto; width: 100%; max-width: 950px;" frameborder="0" scrolling="auto" title="spaceship_titanic-competition"></iframe>
-
+									<h3 class="major">
+										Observations
+									</h3>
+									<ul class = 'alt'>
+									<li>We can see that the high income countries tend to be clustered together, except for a few.</li>
+									<li>Beside the richest nation usually are Upper middle income nations.</li>
+									<li>The low income and lower middle income nations are mostly placed between -23 and 23 degree latitude. Between the Tropic of Cancer and Capricorn. These tend to be the warmest places. The are a few low to lower middle income countries not in that strip. But they are either location in the middle of the continent(mostly deserts), or have no direct access to open seawater.</li>
+									<li>Notice that there are upper middle income nations that lie between the tropics. But we can see that most of the countries have access to open seawater.</li>
+									<li>We could conclude that temperature and access to open seawater are more influential to a countries Income, rather than direct neighbors.</li>
+									</ul>
+								</div>
+								<div class="inner">
+									<h3 class="major">Notebook: choropleth creation process</h3>
+									<iframe src="https://www.kaggle.com/embed/russellhizon/world-gdp-growth-and-location?kernelSessionId=111945777" height="800" style="margin: 0 auto; width: 100%; max-width: 950px;" frameborder="0" scrolling="auto" title="World GDP Growth and Location"></iframe>
 								</div>
 							</div>
 
