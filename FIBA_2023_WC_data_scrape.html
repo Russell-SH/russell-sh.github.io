@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>FIBA World Cup 2023 boxscore Data Scraping</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Home</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="all_projects.html">Full Portfolio</a></li>
+								<li><a href="index.html#to_contacts">Contact Information</a></li>
+
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>2023 FIBA World Cup Boxscore Data Scraping</h2>
+								<p>A quick note about myself. I love basketball. I also tend to check
+									in game stats to know if what I think I am seeing has any basis.
+									Then when someone asked me for help in writing an article about the
+									the FIBA World Cup,
+									 I thought of using boxscore data. Since that will allow us to
+									 look at both player and team, for each game or the whole tournament.
+								</p>
+								<p>
+									The dataset I needed does not exist. But the boxscores are all
+									available at the FIBA website. This only meant one thing, I will create
+									the dataset I need. In here, I will share how I came up with the dataset.
+								</p>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+									<h3 class="major">Process</h3>
+										<h3>Gameplan: Use BeautifulSoup</h3>
+											<p>
+												We can use BeautifulSoup to help us parse and scrape HTML pages. 
+												In simple terms, you can pick and choose parts of the HTML.
+												The way it helps us it that it cuts down the process into 4 steps:
+											</p>
+												<ol type="1">
+													<li><b>Loading content:</b> get URL, make request, create soup instance</il>
+													<li><b>Parsing content:</b> use BeautifulSoup methods(find or find_all) to get to elements or sections that you need</li>
+													<li><b>Extracting data:</b> use BeautifulSoup methods to extract data (I mainly used get_text() here)</li>
+													<li><b>Transforming data:</b> we need to make necessary adjustments</li>
+												</ol>
+											<p>
+												This is nice because all the preparation we need to do now is to know what
+												we want then find where it is. In this case, we want to find
+												where the boxscore <b>TABLE</b> is. So off to the game page I go,
+												clicked box score...
+											</p>
+											<p>The following tables and source codes are from <cite><a href="https://www.fiba.basketball/basketballworldcup/2023/game/2508/Dominican-Republic-Philippines#|tab=boxscore">fiba.basketball</a></cite>.</p>
+
+												<img src="Projects\FIBA_WC_2023\website_sample.png" width="100%">
+											<p>and viewed the source</p>
+												<img src="Projects\FIBA_WC_2023\source_code_no_table.png" width="100%">
+											<p>The table is on the webpage but it is not on the source. We can give up, or we can do 
+												more thinking. This boxscore updates in realtime, it probably is difficult to change
+												the values on the code on every event. The data in the table is probably fetched from an
+												outside source. So we will try to find the link where they fetch the boxscore data from.
+											</p>
+											<p>To do this:
+													<ol type="1">
+														<li>Right Click</li>
+														<li>Click on "Network"</li>
+														<li>Click on "Fetch/XHR"</li>
+														<li>Look for the boxscore</li>
+													</ol>
+											Steps 1 and 2 can be bypassed by "Ctrl + Shift + I" on Windows. We will do the same
+											process for each game.
+											</p>
+												<img src = "Projects\FIBA_WC_2023\fetched_table_location.png" width="100%">
+											<p>
+												We found it! Now we just click on "Headers", get the access URL, and inspect the source code.
+											</p>
+												<img src="Projects\FIBA_WC_2023\box_score_source.png" width="100%">
+												<p>
+													Notice that there is a section class "box-score_team-A" and a div class
+													"team-content". The structure is similar for the other teams boxscore and
+													has section class "box-score_team-B" and div class "team-content". This is
+													nice for me since I can split the soup using the section for each team. I could
+													then run the same function to extract the table for both teams. The last part
+													is to find a way to loop through the URLs for each game.
+												</p>
+								</div>
+								<div class="inner">
+									<h3 class="major">Result</h3>
+									<iframe src = "FIBA_WC_box_score_parser-Copy1.html" title = "FIBA boxscore scraper" height="800" style="margin: 0 auto; width: 100%; border-radius: 1%;"></iframe>	
+								</div>
+							</div>
+
+					</section>
+
+				<!-- Footer -->
+				<section id="footer">
+					<div class="inner">
+						<h2 class="major">Get in touch</h2>
+						<p>For any questions or inquiries, feel free to contact me using the following information.</p>
+					
+						<ul class="contact">
+							<li class="icon solid fa-phone">(323) 561-1366</li>
+							<li class="icon solid fa-envelope"><a href="#">rrshizon@gmail.com</a></li>
+							<li class="icon brands fa-linkedin"><a href="https://www.linkedin.com/in/russell-hizon/">linkedin.com/in/russell-hizon/</a></li>
+							<li class="icon brands fa-kaggle"><a href="https://www.kaggle.com/russellhizon">kaggle.com/russellhizon<a></li>
+						</ul>
+						<ul class="copyright">
+							<li>Portfolio By: Russell Hizon</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			
+	</body>
+</html>
